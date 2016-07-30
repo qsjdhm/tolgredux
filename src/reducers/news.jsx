@@ -8,10 +8,23 @@
  */
 import {combineReducers} from 'redux';
 import {cr} from '../utils';
-import {PUSH_NEWS_LIST} from '../actions/news';
+import {RECEIVE_NEWS_LIST, SET_KEYWORD, PAGE_SIZE, SET_CURRENT_NEWS} from '../actions/news'
+
 
 export default combineReducers({
-	list: cr('', {
-    	[PUSH_NEWS_LIST](state, {list}){return list}
-  	})
-});
+	list: cr([], {
+		[RECEIVE_NEWS_LIST](state, {data}){return data.tngou}
+	}),
+	totalPage: cr(0, {
+		[RECEIVE_NEWS_LIST](state, {data}){return Math.ceil(data.total/PAGE_SIZE)}
+	}),
+	page: cr(1, {
+		[RECEIVE_NEWS_LIST](state, {page}){return page}
+	}),
+	keyword: cr('', {
+		[SET_KEYWORD](state, {value}){return value}
+	}),
+	current: cr({}, {
+		[SET_CURRENT_NEWS](state, {news}){return news}
+	})
+})

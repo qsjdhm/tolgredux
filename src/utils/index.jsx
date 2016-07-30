@@ -1,6 +1,7 @@
 // reducer生成器，为了以后使用方便，起名为create reducer的简写
 export function cr (initialState, handlers) {
   return function reducer(state = initialState, action) {
+	  console.info(handlers.hasOwnProperty(action.type));
     if (handlers.hasOwnProperty(action.type)) {
       return handlers[action.type](state, action);
     } else {
