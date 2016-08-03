@@ -8,7 +8,7 @@
  */
 import {combineReducers} from 'redux';
 import {cr} from '../utils';
-import {RECEIVE_NEWS_LIST, SET_KEYWORD, PAGE_SIZE, SET_CURRENT_NEWS} from '../actions/news'
+import {RECEIVE_NEWS_LIST, CHANGE_KEYWORD, PAGE_SIZE, SET_CURRENT_NEWS} from '../actions/news'
 
 
 export default combineReducers({
@@ -22,7 +22,7 @@ export default combineReducers({
 		[RECEIVE_NEWS_LIST](state, {page}){return page}
 	}),
 	keyword: cr('', {
-		[SET_KEYWORD](state, {value}){return value}
+		[CHANGE_KEYWORD](state, {keyword}){return keyword}
 	}),
 	current: cr({}, {
 		[SET_CURRENT_NEWS](state, {news}){return news}

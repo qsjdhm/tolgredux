@@ -3,14 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import NewsOverview from 'components/NewsOverview';
 import Pager from 'components/Pager';
-import {fetchList, inputKeyword, chooseNews} from 'actions/news';
+import {fetchList, changeKeyword, chooseNews} from 'actions/news';
 
 
 class NewsList extends React.Component{
 	search(){
-		let keyword = this.refs.keyInput.value;
-		this.props.dispatch(fetchList(keyword));
+		this.props.dispatch(fetchList(this.props.keyword));
 	}
+  change(e){
+    this.props.dispatch(changeKeyword(e.target.value));
+  }
 	renderList(){
 		if(this.props.list !== '') {
 			return this.props.list.map((item, i) =>{
@@ -24,11 +26,12 @@ class NewsList extends React.Component{
 		}
 	}
   	render(){
-		let {page, totalPage, dispatch} = this.props;
+		let {page, totalPage, dispatch, keyword} = this.props;
 		return (
 			<div>
 				<div>
-					<input ref="keyInput" />
+          <span>{keyword}</span>
+					<input onChange={this.change.bind(this)} value={keyword} />
 					<button onClick={this.search.bind(this)}>搜索</button>
 				</div>
 				<div>
