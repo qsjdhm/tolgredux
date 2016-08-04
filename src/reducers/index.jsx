@@ -1,9 +1,10 @@
 
 
 import { combineReducers } from 'redux';
-import news from './news'
+import login1 from './login1'
 
 const reducers = {
-	news
+	login1
 };
+
 module.exports = combineReducers(reducers);

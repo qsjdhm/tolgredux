@@ -12,6 +12,7 @@ export function cr (initialState, handlers) {
 
 // action生成器的生成器，同样原因，起名为create action creator的简写
 export function cac (type, ...argNames){
+	console.info(type);
   return function(...args) {
     let action = { type }
     argNames.forEach((arg, index) => {
